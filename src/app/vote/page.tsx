@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { VoteOption, VoteResult } from '@/types'
+import Image from 'next/image'
 
 export default function VotePage() {
   const [currentPair, setCurrentPair] = useState<[VoteOption, VoteOption] | null>(null)
@@ -129,9 +130,11 @@ export default function VotePage() {
                 <div className="space-y-4">
                   <div className="flex items-center justify-center space-x-4">
                     <div className="text-center">
-                      <img
+                      <Image
                         src={lastResult.winner.imageUrl}
                         alt={lastResult.winner.title}
+                        width={96}
+                        height={96}
                         className="w-24 h-24 rounded-xl object-cover mx-auto mb-2 ring-4 ring-yellow-400"
                       />
                       <p className="font-bold text-green-600">勝利!</p>
@@ -142,9 +145,11 @@ export default function VotePage() {
                     </div>
                     <div className="text-2xl">VS</div>
                     <div className="text-center">
-                      <img
+                      <Image
                         src={lastResult.loser.imageUrl}
                         alt={lastResult.loser.title}
+                        width={96}
+                        height={96}
                         className="w-24 h-24 rounded-xl object-cover mx-auto mb-2 ring-2 ring-gray-300"
                       />
                       <p className="font-bold text-gray-600">惜敗</p>
@@ -170,7 +175,7 @@ export default function VotePage() {
               className="max-w-4xl mx-auto"
             >
               <div className="grid md:grid-cols-2 gap-8">
-                {currentPair.map((option, index) => (
+                {currentPair.map((option) => (
                   <motion.div
                     key={option.id}
                     whileHover={{ scale: 1.02 }}
@@ -182,10 +187,13 @@ export default function VotePage() {
                   >
                     <div className="bg-white rounded-3xl shadow-xl overflow-hidden border-2 border-purple-200 hover:border-purple-400 transition-all duration-300">
                       <div className="aspect-square relative">
-                        <img
+                        <Image
                           src={option.imageUrl}
                           alt={option.title}
+                          width={400}
+                          height={400}
                           className="w-full h-full object-cover"
+                          priority
                         />
                         {isVoting && (
                           <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">

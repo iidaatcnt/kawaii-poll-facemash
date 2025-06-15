@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
     const offset = (page - 1) * limit
 
     // Base query
-    let query = supabase
+    const query = supabase
       .from('images')
       .select('id, title, url, description, elo_rating, total_votes, wins, losses, tags, created_at', { count: 'exact' })
       .eq('is_approved', true)

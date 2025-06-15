@@ -42,7 +42,7 @@ export interface Database {
           losses: number
           uploader_id: string | null
           file_size: number | null
-          dimensions: any | null
+          dimensions: { width: number; height: number } | null
           is_approved: boolean
           is_nsfw: boolean
           approved_by: string | null
